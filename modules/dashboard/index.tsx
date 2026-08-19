@@ -1,9 +1,11 @@
 import React from 'react'
+import Sidebar  from "@/components/layout/site-sidebar";
+
 
 const index = () => {
   return (
     <div>
-     <p>This is Dashboard Page.</p>
+      <Sidebar/>
     </div>
   )
 }

@@ -1,67 +1,149 @@
+"use client";
+
+import React from "react";
 import {
-  Facebook,
-  Instagram,
-  Linkedin,
-  Mail,
-  MessageCircle,
-  Send,
-  Twitter,
-  Youtube,
+  House,
+  WalletCards,
+  FileClock,
+  TicketPercent,
+  UserRoundPlus,
+  UserRound,
+  UsersRound,
+  Settings,
+  ChevronDown,
 } from "lucide-react";
 
-const socialLinks = [
-  { label: "WhatsApp", href: "https://wa.me/923001234567", icon: MessageCircle, className: "text-green-500" },
-  { label: "Facebook", href: "#", icon: Facebook, className: "text-blue-600" },
-  { label: "Instagram", href: "#", icon: Instagram, className: "text-pink-500" },
-  { label: "LinkedIn", href: "#", icon: Linkedin, className: "text-blue-700" },
-  { label: "Twitter", href: "#", icon: Twitter, className: "text-sky-500" },
-  { label: "YouTube", href: "#", icon: Youtube, className: "text-red-600" },
+type MenuItem = {
+  label: string;
+  icon: React.ElementType;
+  dropdown?: boolean;
+};
+
+const menuItems: MenuItem[] = [
+  {
+    label: "Dashboard",
+    icon: House,
+  },
+  {
+    label: "Assets",
+    icon: WalletCards,
+    dropdown: true,
+  },
+  {
+    label: "Orders",
+    icon: FileClock,
+    dropdown: true,
+  },
+  {
+    label: "Rewards Hub",
+    icon: TicketPercent,
+  },
+  {
+    label: "Referral",
+    icon: UserRoundPlus,
+  },
+  {
+    label: "Account",
+    icon: UserRound,
+    dropdown: true,
+  },
+  {
+    label: "Sub Accounts",
+    icon: UsersRound,
+  },
+  {
+    label: "Settings",
+    icon: Settings,
+  },
 ];
 
-export function SiteSidebar() {
+const Sidebar = () => {
   return (
-    <aside className="sticky top-24 hidden w-full sm:block" aria-label="Contact and social links">
-      <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white/95 shadow-xl shadow-slate-900/10 backdrop-blur">
-        <div className="border-b-2 border-blue-700 px-4 pt-3">
-          <span className="inline-flex -mb-[2px] rounded-t-lg bg-blue-700 px-3 py-2 text-xs font-bold uppercase tracking-wide text-white">
-            For branding &amp; promotions
-          </span>
-        </div>
+    <aside
+      className="
+        w-[250px]
+        bg-[#181A20]
+        text-[#848E9C]
+      "
+    >
+      <nav className="flex flex-col gap-2 pt-3">
 
-        <div className="px-4 py-4">
-          <p className="text-sm leading-6 text-slate-700">
-            <span className="font-bold text-slate-900">Contact us at:</span>{" "}
-            <a href="mailto:info@bzconsultancy.com" className="text-blue-700 hover:underline">
-              info@bzconsultancy.com
-            </a>
-          </p>
-        </div>
+        {menuItems.map((item, index) => {
+          const Icon = item.icon;
+          const isActive = index === 0;
 
-        <div className="border-y border-slate-100 px-4 py-3">
-          <p className="text-xs font-bold uppercase tracking-wide text-blue-800">Our social media links ↘</p>
-        </div>
+          return (
+            <button
+              key={item.label}
+              className={`
+                relative
+                flex
+                w-full
+                h-full
+                items-center
+                py-4
+                px-[28px]
+                text-left
+                transition-colors
+                rounded-r-[16px]
 
-        <nav className="grid gap-2 px-4 py-4" aria-label="Social media">
-          {socialLinks.map(({ label, href, icon: Icon, className }) => (
-            <a
-              key={label}
-              href={href}
-              target={href.startsWith("http") ? "_blank" : undefined}
-              rel={href.startsWith("http") ? "noreferrer" : undefined}
-              className="flex items-center gap-3 text-sm font-medium text-slate-700 transition-colors hover:text-blue-700"
+                ${
+                  isActive
+                    ? `
+                      bg-[#2B3441]
+                      text-[#F5F5F5]
+                    `
+                    : `
+                      text-[#848E9C]
+                      hover:bg-[#2B3441]
+                      hover:text-[#EAECEF]
+                    `
+                }
+              `}
             >
-              <Icon size={18} className={className} aria-hidden="true" />
-              {label}
-            </a>
-          ))}
-        </nav>
+              {/* Icon */}
+              <Icon
+                size={25}
+                strokeWidth={1.8}
+                className="shrink-0"
+              />
 
-        <a href="mailto:info@bzconsultancy.com" className="flex items-center gap-2 bg-blue-700 px-4 py-3 text-xs font-bold text-white transition-colors hover:bg-blue-800">
-          <Mail size={15} aria-hidden="true" />
-          Get in touch
-          <Send size={14} className="ml-auto" aria-hidden="true" />
-        </a>
-      </div>
+              {/* Text */}
+              <span
+                className={`
+                  ml-[15px]
+                  text-[16px]
+                  font-medium
+                  leading-none
+                  ${
+                    isActive
+                      ? "font-semibold text-[#F5F5F5]"
+                      : "font-medium text-[#848E9C]"
+                  }
+                `}
+              >
+                {item.label}
+              </span>
+
+              {/* Dropdown */}
+              {item.dropdown && (
+                <ChevronDown
+                  size={23}
+                  strokeWidth={1.8}
+                  className="
+                    absolute
+                    right-[39px]
+                    text-[#848E9C]
+                  "
+                />
+              )}
+            </button>
+          );
+        })}
+
+      </nav>
     </aside>
   );
-}
+};
+
+export default Sidebar;
