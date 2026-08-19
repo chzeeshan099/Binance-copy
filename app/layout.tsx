@@ -4,7 +4,7 @@ import "./globals.css";
 import { ToastProvider } from "@/components/providers/ToastProvider";
 import { ApplyModalProvider } from "@/components/providers/apply-modal-provider";
 import { Footer } from "@/components/layout/footer";
-import { Navbar } from "@/components/layout/navbar";
+import Navbar  from "@/components/layout/navbar";
 import { SiteSidebar } from "@/components/layout/site-sidebar";
 
 export const metadata: Metadata = {
