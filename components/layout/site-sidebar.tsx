@@ -241,7 +241,8 @@ const Sidebar = () => {
   return (
     <aside
       className="
-        w-[250px]
+        min-w-[250px]
+        max-w-[250px]
         bg-[#181A20]
         text-[#848E9C]
       "
