@@ -1,9 +1,5 @@
-import Home from "@/modules/home/index";
+import { redirect } from "next/navigation";
 
-export default function HomePage() {
-  return (
-    <>
-      <Home/>
-    </>
-  );
+export default function Page() {
+  redirect("/dashboard");
 }

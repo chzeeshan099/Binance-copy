@@ -1,10 +1,10 @@
 import React from 'react'
-import Index from '@/modules/about-us/index'
+import Index from '@/modules/dashboard/index'
 const page = () => {
   return (
-    <>
+    <div>
       <Index/>
-    </>
+    </div>
   )
 }
 

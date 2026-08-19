@@ -1,5 +1,5 @@
 import React from 'react'
-import Index from "@/modules/service-charges/index"
+import Index from '@/modules/home/index'
 const page = () => {
   return (
     <div>
